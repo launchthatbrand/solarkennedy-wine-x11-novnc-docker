@@ -16,7 +16,7 @@ ENV USER=$USER \
 
 
 RUN dpkg --add-architecture i386 && \
-    apt-get update && apt-get -y install python2 python-is-python2 xvfb x11vnc xdotool wget tar supervisor net-tools fluxbox gnupg2 
+    apt-get update && apt-get -y install python2 python-is-python2 xvfb x11vnc xdotool wget tar supervisor net-tools fluxbox gnupg2 xrdp
     
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
@@ -37,5 +37,6 @@ RUN set -ex; \
     useradd -u $USER_ID -d $HOME -g $USER -ms /bin/bash $USER
 
 EXPOSE 8080
+EXPOSE 3389
 
 CMD ["/usr/bin/supervisord"]
