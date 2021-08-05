@@ -29,7 +29,7 @@ WORKDIR /root/
 #    wget -O - https://github.com/novnc/websockify/archive/v0.9.0.tar.gz | tar -xzv -C /root/ && mv /root/websockify-0.9.0 /root/novnc/utils/websockify
     
 ADD .fluxbox $HOME/.fluxbox
-ADD lvrg_bg.jpg /lvrg_bg.jpg
+ADD build /build
 ADD build/xrdp.ini /etc/xrdp/xrdp.ini
 
 RUN set -ex; \
@@ -37,8 +37,8 @@ RUN set -ex; \
     useradd -u $USER_ID -d $HOME -g $USER_NAME -ms /bin/bash $USER_NAME
 
 
-# EXPOSE 8080
-# EXPOSE 3389
+EXPOSE 8080
+EXPOSE 3389
 
 COPY entrypoint.sh /usr/bin/entrypoint
 ENTRYPOINT ["/usr/bin/entrypoint"]

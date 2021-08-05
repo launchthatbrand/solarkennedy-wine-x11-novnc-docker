@@ -17,6 +17,13 @@ if is_enabled "${USE_NOVNC}"; then
     wget -O - https://github.com/novnc/websockify/archive/v0.9.0.tar.gz | tar -xzv -C /root/ && mv /root/websockify-0.9.0 /root/novnc/utils/websockify
 fi
 
+if [ -z ${BRAND+x} ]; then
+    echo "BRAND is unset";
+else
+    echo "BRAND is set to '$BRAND'";
+    cp /build/"${BRAND}"_bg.jpg $HOME/.fluxbox/bg.jpg
+fi
+
 # Create the VNC password
 echo "home is ${HOME}"
 mkdir -p "${HOME}"/.vnc
